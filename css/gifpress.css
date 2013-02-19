@@ -1,0 +1,19 @@
+img.gifimage{
+	height:50px; 
+	width:50px;
+	cursor:hand;
+	cursor:pointer;
+}
+
+span.giflink{
+	cursor:hand;
+	cursor:pointer;
+	font-weight:bold;
+}
+
+span.giflink_warn{
+	cursor:hand;
+	cursor:pointer;
+	font-weight:bold;
+	color:#f00;
+}
