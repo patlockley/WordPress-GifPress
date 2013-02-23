@@ -3,9 +3,9 @@
 	/*
 	Plugin Name: GifPress 
 	Description: Create an animated gif in WordPress
-	Version: 0.01
+	Version: 0.1
 	Author: pgogy
-	Plugin URI: http://www.pgogy.com/code/xerte-online
+	Plugin URI: http://www.pgogy.com/code/groups/wordpress/gifpress/
 	Author URI: http://www.pgogy.com
 	License: GPL
 	*/

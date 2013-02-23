@@ -1,15 +1,19 @@
 === Plugin Name ===
 Contributors: pgogy
-Tags: animated gif, gif, animation
+Tags: gif, animated gif, video, movie, animation
 Requires at least: 3.1
 Tested up to: 3.5
-Stable tag: 0.36
+Stable tag: 0.1
 
-GifPress allows a user to create an animated gif using a WordPress install and files in the WordPress Media library
+GifPress allows you to make an animated gif in WordPress
 
 == Description ==
 
-GifPress allows a user to create an animated gif using a WordPress install and files in the WordPress Media library
+GifPress allows a WordPress user to make animated gifs using pictures already in the WordPress Media library.
+
+Please come to http://www.pgogy.com and http://www.pgogy.com/code/groups/wordpress/gifpress/ for support
+
+[vimeo https://vimeo.com/60035850]
 
 == Installation ==
 
@@ -18,10 +22,13 @@ GifPress allows a user to create an animated gif using a WordPress install and f
 
 == Frequently Asked Questions ==
 
-No Questions have been asked yet. 
+No Questions have been asked yet. Please see http://www.pgogy.com/code/groups/wordpress/gifpress/
 
 == Screenshots ==
 
-
+1. The GifPress Animated gif creation tool
 
 == Changelog ==
+
+= 0.1 =
+First version released. Still a development version. I expect it to work, but problems may occur. 
