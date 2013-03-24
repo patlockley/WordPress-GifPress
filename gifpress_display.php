@@ -27,61 +27,72 @@
 		
 	}
 	
-	function gifpress_process_picture($path, $center, $size){
+	function gifpress_process_picture($path, $center, $size, $scale){
 	
 		$ext = pathinfo($path, PATHINFO_EXTENSION);
+	
+		$details = getimagesize($path);
+	
+		$new_details = array();
+	
+		if($scale){
+						 
+			$scale = min($size[0]/$details[0], $size[1]/$details[1]);
+
+			$new_details = array(ceil($scale*$details[0]),ceil($scale*$details[1]));
+			
+		}else{
+		
+			$new_details = array($size[0],$size[1]);
+		
+		}
 	
 		switch($ext){
 						
 			case "png" : $source = imagecreatefrompng($path);
-						 $details = getimagesize($path);
 						 $dest = imagecreatetruecolor($size[0], $size[1]);
 						 if($center!=="on"){
-							imagecopyresampled( $dest, $source, 0, 0, 0, 0, $size[0], $size[1] , $details[0], $details[1] );
+							imagecopyresampled( $dest, $source, 0, 0, 0, 0, $new_details[0], $new_details[1] , $details[0], $details[1] );
 						 }else{
 							$new_x = ($size[0] - $details[0])/2;
 							$new_y = ($size[1] - $details[1])/2;
-							imagecopyresampled( $dest, $source, $new_x, $new_y, 0, 0, $details[0], $details[1] , $details[0], $details[1] );
+							imagecopyresampled( $dest, $source, $new_x, $new_y, 0, 0, $new_details[0], $new_details[1] , $details[0], $details[1] );
 						 }
 						 imagegif($dest, str_replace(".png",".gif",$path));
 						 $filename = str_replace(".png",".gif",$path);
 						 break;
-			case "jpeg": $source = imagecreatefromjpeg($path); 
-						 $details = getimagesize($path);
-						 print_r($details);						 
+			case "jpeg": $source = imagecreatefromjpeg($path);  
 						 $dest = imagecreatetruecolor($size[0], $size[1]);
 						 if($center!=="on"){
 							imagecopyresampled( $dest, $source, 0, 0, 0, 0, $size[0], $size[1] , $details[0], $details[1] );
 						 }else{
 							$new_x = ($size[0] - $details[0])/2;
 							$new_y = ($size[1] - $details[1])/2;
-							imagecopyresampled( $dest, $source, $new_x, $new_y, 0, 0, $details[0], $details[1] , $details[0], $details[1] );
+							imagecopyresampled( $dest, $source, $new_x, $new_y, 0, 0, $new_details[0], $new_details[1] , $details[0], $details[1] );
 						 }
 						 imagegif($dest, str_replace(".jpeg",".gif",$path));
 						 $filename = str_replace(".jpeg",".gif",$path);
 						 break;
-			case "jpg" : $source = imagecreatefromjpeg($path); 
-						 $details = getimagesize($path);
+			case "jpg" : $source = imagecreatefromjpeg($path);
 						 $dest = imagecreatetruecolor($size[0], $size[1]);
 						 if($center!=="on"){
 							imagecopyresampled( $dest, $source, 0, 0, 0, 0, $size[0], $size[1] , $details[0], $details[1] );
 						 }else{
-							$new_x = ($size[0] - $details[0])/2;
-							$new_y = ($size[1] - $details[1])/2;
-							imagecopyresampled( $dest, $source, $new_x, $new_y, 0, 0, $details[0], $details[1] , $details[0], $details[1] );
+							$new_x = ($size[0] - $new_details[0])/2;
+							$new_y = ($size[1] - $new_details[1])/2;
+							imagecopyresampled( $dest, $source, $new_x, $new_y, 0, 0, $new_details[0], $new_details[1] , $details[0], $details[1] );
 						 }
 						 imagegif($dest, str_replace(".jpg",".gif",$path));
 						 $filename = str_replace(".jpg",".gif",$path);
 						 break;
 			case "gif" : $source = imagecreatefromgif($path);
-						 $details = getimagesize($path);
 						 $dest = imagecreatetruecolor($size[0], $size[1]);
 						 if($center!=="on"){
 							imagecopyresampled( $dest, $source, 0, 0, 0, 0, $details[0], $details[1] , $details[0], $details[1] );
 						 }else{
 							$new_x = ($size[0] - $details[0])/2;
 							$new_y = ($size[1] - $details[1])/2;
-							imagecopyresampled( $dest, $source, $new_x, $new_y, 0, 0, $size[0], $size[1] , $details[0], $details[1] );
+							imagecopyresampled( $dest, $source, $new_x, $new_y, 0, 0, $new_details[0], $new_details[1] , $details[0], $details[1] );
 						 }
 						 imagegif($dest, str_replace(".gif","2.gif",$path));
 						 $filename = str_replace(".gif","2.gif",$path);
@@ -125,16 +136,18 @@
 					if($width==""&&$height==""){
 				
 						$size = gifpress_process_size($data);
+						$scale = false;
 						
 					}else{
 					
 						$size = array($width, $height);
+						$scale = true;
 					
 					}
 				
 					foreach($data as $picture){ 
 
-						$filename = gifpress_process_picture($dir['basedir'] . $picture[0], $center, $size);
+						$filename = gifpress_process_picture($dir['basedir'] . $picture[0], $center, $size, $scale);
 
 						$frames [ ] = $filename; 
 						
