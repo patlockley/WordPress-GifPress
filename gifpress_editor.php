@@ -27,12 +27,10 @@ function gifpress_editor_make($hook) {
 		$query_images = new WP_Query( $args );
 		$images = array();
 		foreach ( $query_images->posts as $image) {
-			$images[]= $image->guid;
+			$images[]= array($image->post_title, $image->guid);
 		}
 
 	}
-	
-	$images = array_unique($images);
 	
 	if(count($images)!=0){
 		
@@ -44,7 +42,7 @@ function gifpress_editor_make($hook) {
 	
 		foreach($images as $image){
 		
-			echo " <img class='gifimage' alt='" . $image->post_title . "' title='" . $image->post_title . "' onclick='javascript:add_gif_to_list(this);' src='" . $image . "' /> ";
+			echo " <img class='gifimage' alt='" . $image[0] . "' title='" . $image[0] . "' onclick='javascript:add_gif_to_list(this);' src='" . $image[1] . "' /> ";
 		
 		}
 		

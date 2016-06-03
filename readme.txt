@@ -2,8 +2,8 @@
 Contributors: pgogy
 Tags: elearning, learning, education, content creation, xerte
 Requires at least: 3.1
-Tested up to: 3.5
-Stable tag: 0.2
+Tested up to: 4.5
+Stable tag: 0.3
 
 GifPress allows you to make an animated gif in WordPress
 

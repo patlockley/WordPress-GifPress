@@ -3,7 +3,7 @@
 	/*
 	Plugin Name: GifPress 
 	Description: Create an animated gif in WordPress
-	Version: 0.2
+	Version: 0.3
 	Author: pgogy
 	Plugin URI: http://www.pgogy.com/code/groups/wordpress/gifpress/
 	Author URI: http://www.pgogy.com
